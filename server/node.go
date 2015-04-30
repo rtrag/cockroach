@@ -452,6 +452,7 @@ func (n *Node) startStoresScanner(stopper *util.Stopper) {
 					StartedAt:  n.startedAt,
 					RangeCount: int32(rangeCount),
 					Stats:      *stats,
+					Desc:       n.Descriptor,
 				}
 				key := engine.NodeStatusKey(int32(n.Descriptor.NodeID))
 				if err := n.ctx.DB.Run(client.PutProto(key, status)); err != nil {
